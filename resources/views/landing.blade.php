@@ -29,11 +29,9 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">Cell Phones</a></li>
-                            <li><a class="dropdown-item" href="#!">Wearable</a></li>
-                            <li><a class="dropdown-item" href="#!">Tablet</a></li>
-                            <li><a class="dropdown-item" href="#!">Laptop</a></li>
-                            <li><a class="dropdown-item" href="#!">Accessories</a></li>
+                            @foreach ($categories as $category)
+                                <li><a class="dropdown-item" href="#!">{{ $category->name }}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                 </ul>

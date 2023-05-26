@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,10 @@ class LandingController extends Controller
     {
         // mengambil 8 data produk secara acak
         $products = Product::inRandomOrder(8)->get();
+        
+        // mengambil data category
+        $categories = Category::all();
 
-        return view('landing', compact('products'));
+        return view('landing', compact('products', 'categories'));
     }
 }
