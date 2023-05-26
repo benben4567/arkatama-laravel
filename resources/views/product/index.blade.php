@@ -7,7 +7,7 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <table id="datatablesSimple">
+                    <table id="dataTable" class="stripe">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -25,8 +25,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $product['category'] }}</td>
                                     <td>{{ $product['name'] }}</td>
-                                    <td>{{ $product['price'] }}</td>
-                                    <td>{{ $product['sale_price'] }}</td>
+                                    <td>Rp. {{ number_format($product['price'], 0, 2) }}</td>
+                                    <td>Rp. {{ number_format($product['sale_price'], 0, 2) }}</td>
                                     <td>{{ $product['brands'] }}</td>
                                     <td>
                                         <a href="#" class="btn btn-warning">Edit</a>

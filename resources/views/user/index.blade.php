@@ -7,7 +7,7 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <table id="datatablesSimple" class="table table-striped">
+                    <table id="dataTable" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -20,20 +20,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    <img src="https://placehold.co/50x50" alt="avatar">
-                                </td>
-                                <td>Admin</td>
-                                <td>admin@email.test</td>
-                                <td>081234567890</td>
-                                <td>Administrator</td>
-                                <td>
-                                    <a class="btn btn-warning" href="#">Edit</a>
-                                    <a class="btn btn-danger" href="#">Delete</a>
-                                </td>
-                            </tr>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        <img src="https://placehold.co/50x50" alt="avatar">
+                                    </td>
+                                    <td>{{ $user['name'] }}</td>
+                                    <td>{{ $user['email'] }}</td>
+                                    <td>{{ $user['phone'] }}</td>
+                                    <td>
+                                        <span class="badge  {{ $user['role'] == 'admin' ? 'bg-success' : 'bg-primary' }}">{{ $user['role'] }}</span>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning" href="#">Edit</a>
+                                        <a class="btn btn-danger" href="#">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
