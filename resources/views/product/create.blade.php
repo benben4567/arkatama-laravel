@@ -7,16 +7,15 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <form>
+                    <form action="{{ route('product.store') }}" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label for="category" class="form-label">Category</label>
                             <select class="form-select" aria-label="category" id="category" name="category">
                                 <option selected disabled>- Choose Category -</option>
-                                <option value="cellphone">cellphone</option>
-                                <option value="tablet">tablet</option>
-                                <option value="wearable">wearable</option>
-                                <option value="laptop">laptop</option>
-                                <option value="accessories">accessories</option>
+                                @foreach ($categories as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
@@ -35,11 +34,9 @@
                             <label for="brand" class="form-label">Brand</label>
                             <select class="form-select" aria-label="brand" id="brand" name="brand">
                                 <option selected disabled>- Choose Brand -</option>
-                                <option value="Apple">Apple</option>
-                                <option value="Samsung">Samsung</option>
-                                <option value="Logitech">Logitech</option>
-                                <option value="Asus">Asus</option>
-                                <option value="Lenovo">Lenovo</option>
+                                @foreach ($brands as $brand)
+                                    <option value="{{ $brand->name }}">{{ $brand->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
