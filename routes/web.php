@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProductController;
@@ -23,6 +24,14 @@ Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Brand
+Route::get('/brand', [BrandController::class, 'index'])->name('brand.index'); // route untuk menampilkan data awal
+Route::get('/brand/create', [BrandController::class, 'create'])->name('brand.create'); // route untuk menampilkan form create
+Route::get('/brand/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit'); // route untuk menampilkan form edit
+Route::post('/brand', [BrandController::class, 'store'])->name('brand.store'); // route untuk menyimpan data
+Route::put('/brand/{id}', [BrandController::class, 'update'])->name('brand.update'); // route untuk mengupdate data
+Route::delete('/brand/{id}', [BrandController::class, 'destroy'])->name('brand.destroy'); // route untuk menghapus data
 
 // Category
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
