@@ -61,8 +61,11 @@ class BrandController extends Controller
     // function destroy untuk menghapus data yang sudah ada
     public function destroy($id)
     {
-        // hapus data brands berdasarkan id
-        Brand::where('id', $id)->delete();
+        // ambil data category berdasarkan id
+        $brand = Brand::find($id);
+
+        // hapus data category
+        $brand->delete();
 
         // alihkan halaman ke halaman brands
         return redirect()->route('brand.index');

@@ -16,7 +16,7 @@
                             <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="button" class="btn btn-secondary">Cancel</button>
+                        <a href="{{ route('category.index') }}" class="btn btn-secondary">Cancel</a>
                     </form>
 
                 </div>

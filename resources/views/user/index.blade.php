@@ -5,6 +5,8 @@
         <div class="container-fluid px-4">
             <h1 class="my-4">User</h1>
 
+            <a href="{{ route('user.create') }}" class="btn btn-primary mb-2">Create User</a>
+
             <div class="card mb-4">
                 <div class="card-body">
                     <table id="dataTable" class="table table-striped">
@@ -26,15 +28,19 @@
                                     <td>
                                         <img src="https://placehold.co/50x50" alt="avatar">
                                     </td>
-                                    <td>{{ $user['name'] }}</td>
-                                    <td>{{ $user['email'] }}</td>
-                                    <td>{{ $user['phone'] }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->phone }}</td>
                                     <td>
-                                        <span class="badge  {{ $user['role'] == 'admin' ? 'bg-success' : 'bg-primary' }}">{{ $user['role'] }}</span>
+                                        <span class="badge  {{ $user->role->name == 'admin' ? 'bg-success' : 'bg-primary' }}">{{ $user->role->name }}</span>
                                     </td>
                                     <td>
-                                        <a class="btn btn-warning" href="#">Edit</a>
-                                        <a class="btn btn-danger" href="#">Delete</a>
+                                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">Edit</a>
+                                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
