@@ -52,20 +52,21 @@
     <!-- Carousel-->
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            @foreach ($sliders as $slider)
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $loop->iteration - 1 }}" class="{{ $loop->first ? 'active' : '' }}"
+                    aria-current="{{ $loop->first ? 'true' : '' }}" aria-label="Slide 1"></button>
+            @endforeach
         </div>
         <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="3000">
-                <img src="https://picsum.photos/1000/300.webp?random=1" class="d-block w-100" alt="banner1">
-            </div>
-            <div class="carousel-item" data-bs-interval="3000">
-                <img src="https://picsum.photos/1000/300.webp?random=2" class="d-block w-100" alt="banner2">
-            </div>
-            <div class="carousel-item" data-bs-interval="3000">
-                <img src="https://picsum.photos/1000/300.webp?random=3" class="d-block w-100" alt="banner3">
-            </div>
+            @foreach ($sliders as $slider)
+                <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="3000">
+                    <img src="{{ asset('storage/slider/' . $slider->image) }}" class="d-block w-100" alt="{{ $slider->image }}">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>{{ $slider->title }}</h5>
+                        <p>{{ $slider->caption }}</p>
+                    </div>
+                </div>
+            @endforeach
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -81,7 +82,7 @@
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-                @foreach ($products as $product)
+                @forelse ($products as $product)
                     <div class="col mb-5">
                         <div class="card h-100">
                             @if ($product['sale_price'] != 0)
@@ -108,9 +109,9 @@
                                     <!-- Product price-->
                                     @if ($product['sale_price'] != 0)
                                         <span class="text-muted text-decoration-line-through">Rp.{{ number_format($product['price'], 0) }}</span>
-                                        Rp.{{  number_format($product['sale_price'], 0) }}
+                                        Rp.{{ number_format($product['sale_price'], 0) }}
                                     @else
-                                        Rp.{{  number_format($product['price'], 0) }}
+                                        Rp.{{ number_format($product['price'], 0) }}
                                     @endif
                                 </div>
                             </div>
@@ -120,7 +121,11 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="alert alert-secondary w-100 text-center" role="alert">
+                        <h4>Produk belum tersedia</h4>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>
