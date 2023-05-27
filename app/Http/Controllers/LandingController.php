@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -15,7 +16,10 @@ class LandingController extends Controller
         
         // mengambil data category
         $categories = Category::all();
+        
+        // mengambil data slider
+        $sliders = Slider::all();
 
-        return view('landing', compact('products', 'categories'));
+        return view('landing', compact('products', 'categories', 'sliders'));
     }
 }
