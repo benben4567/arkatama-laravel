@@ -6,6 +6,12 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 Dashboard
             </a>
+            <div class="sb-sidenav-menu-heading">Content</div>
+            <a class="nav-link" href="{{ route('slider.index') }}">
+                <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
+                Slider
+            </a>
+
             <div class="sb-sidenav-menu-heading">Management</div>
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
