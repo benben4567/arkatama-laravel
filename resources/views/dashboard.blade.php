@@ -71,7 +71,7 @@
                     DataTable Example
                 </div>
                 <div class="card-body">
-                    <table id="datatablesSimple">
+                    <table id="dataTable" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Name</th>

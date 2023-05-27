@@ -9,7 +9,7 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <table id="dataTable" class="stripe">
+                    <table id="dataTable" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -23,8 +23,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $brand->name }}</td>
                                     <td>
-                                        <a href="{{ route('brand.edit', $brand->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                         <form onsubmit="return confirm('Are you sure? ');" action="{{ route('brand.destroy', $brand->id) }}" method="POST">
+                                            <a href="{{ route('brand.edit', $brand->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>

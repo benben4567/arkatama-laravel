@@ -9,7 +9,7 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <table id="dataTable" class="stripe">
+                    <table id="dataTable" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>

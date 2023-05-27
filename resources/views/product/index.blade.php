@@ -9,7 +9,7 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <table id="dataTable" class="stripe">
+                    <table id="dataTable" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -31,8 +31,8 @@
                                     <td>Rp. {{ number_format($product->sale_price, 0, 2) }}</td>
                                     <td>{{ $product->brands }}</td>
                                     <td>
-                                        <a href="{{ route('product.edit', $product->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                         <form onsubmit="return confirm('Are you sure? ');" action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                            <a href="{{ route('product.edit', $product->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                             @csrf
                                             @method('DELETE')
 
