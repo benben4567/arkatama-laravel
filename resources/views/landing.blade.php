@@ -41,7 +41,7 @@
                         Cart
                         <span class="badge bg-light text-dark ms-1 rounded-pill">0</span>
                     </a>
-                    <a href="{{ route('dashboard') }}" class="btn btn-outline-light ms-1">
+                    <a href="{{ route('login') }}" class="btn btn-outline-light ms-1">
                         <i class="bi-person-fill me-1"></i>
                         Login
                     </a>
@@ -87,31 +87,31 @@
                         <div class="card h-100">
                             @if ($product['sale_price'] != 0)
                                 <!-- Sale badge-->
-                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                                <div class="badge bg-success text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
                             @endif
 
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                            <img class="card-img-top" src="{{ asset('storage/product/' . $product->image) }}" alt="{{ $product->name }}" />
 
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
                                     <a href="#" style="text-decoration: none" class="text-dark">
-                                        <h5 class="fw-bolder">{{ $product['name'] }}</h5>
+                                        <h5 class="fw-bolder">{{ $product->name }}</h5>
                                     </a>
                                     <!-- Product reviews-->
                                     <div class="d-flex justify-content-center small text-warning mb-2">
-                                        @for ($i = 0; $i < $product['rating']; $i++)
+                                        @for ($i = 0; $i < $product->rating; $i++)
                                             <div class="bi-star-fill"></div>
                                         @endfor
                                     </div>
                                     <!-- Product price-->
                                     @if ($product['sale_price'] != 0)
-                                        <span class="text-muted text-decoration-line-through">Rp.{{ number_format($product['price'], 0) }}</span>
-                                        Rp.{{ number_format($product['sale_price'], 0) }}
+                                        <span class="text-muted text-decoration-line-through">Rp.{{ number_format($product->price, 0) }}</span>
+                                        Rp.{{ number_format($product->sale_price, 0) }}
                                     @else
-                                        Rp.{{ number_format($product['price'], 0) }}
+                                        Rp.{{ number_format($product->price, 0) }}
                                     @endif
                                 </div>
                             </div>

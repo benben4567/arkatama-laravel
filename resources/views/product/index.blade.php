@@ -17,7 +17,7 @@
                                 <th>Nama</th>
                                 <th>Price</th>
                                 <th>Sale Price</th>
-                                <th>Brand</th>
+                                <th>Image</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -29,7 +29,13 @@
                                     <td>{{ $product->name }}</td>
                                     <td>Rp. {{ number_format($product->price, 0, 2) }}</td>
                                     <td>Rp. {{ number_format($product->sale_price, 0, 2) }}</td>
-                                    <td>{{ $product->brands }}</td>
+                                    <td>
+                                        @if ($product->image == null)
+                                            <span class="badge bg-primary">No Image</span>
+                                        @else
+                                            <img src="{{ asset('storage/product/' . $product->image) }}" alt="{{ $product->name }}" style="max-width: 50px">
+                                        @endif
+                                    </td>
                                     <td>
                                         <form onsubmit="return confirm('Are you sure? ');" action="{{ route('product.destroy', $product->id) }}" method="POST">
                                             <a href="{{ route('product.edit', $product->id) }}" class="btn btn-sm btn-warning">Edit</a>

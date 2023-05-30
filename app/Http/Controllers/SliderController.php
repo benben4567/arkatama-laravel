@@ -26,7 +26,7 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         // ubah nama file gambar dengan angka random
-        $imageName = time().'.'.$request->image->extension();
+        $imageName = time().'.'.$request->image->extension(); // 1685433155.jpg
 
         // upload file gambar ke folder slider
         Storage::putFileAs('public/slider', $request->file('image'), $imageName);
@@ -58,7 +58,7 @@ class SliderController extends Controller
         if ($request->hasFile('image')) {
             // ambil nama file gambar lama dari database
             $old_image = Slider::find($id)->image;
-            
+
             // hapus file gambar lama dari folder slider
             Storage::delete('public/slider/'.$old_image);
 
@@ -68,14 +68,14 @@ class SliderController extends Controller
 
             // upload file gambar ke folder slider
             Storage::putFileAs('public/slider', $request->file('image'), $imageName);
-            
+
             // update data sliders
             Slider::where('id', $id)->update([
                 'title' => $request->title,
                 'caption' => $request->caption,
                 'image' => $imageName,
             ]);
-            
+
         } else {
             // jika user tidak mengupload gambar
             // update data sliders hnaya untuk title dan caption
@@ -84,7 +84,7 @@ class SliderController extends Controller
                 'caption' => $request->caption,
             ]);
         }
-        
+
 
         // alihkan halaman ke halaman sliders
         return redirect()->route('slider.index');
