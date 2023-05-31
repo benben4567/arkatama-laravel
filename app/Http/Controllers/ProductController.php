@@ -6,7 +6,9 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -14,7 +16,11 @@ class ProductController extends Controller
     {
         $products = Product::with('category')->get();
 
-        return view('product.index', ['products' => $products]);
+        if (Auth::user()->role->name == 'User') {
+            return view('product.card', ['products' => $products]);
+        } else {
+            return view('product.index', ['products' => $products]);
+        }
     }
 
     public function create()
@@ -27,6 +33,20 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'category' => 'required',
+            'name' => 'required|string|min:3',
+            'price' => 'required|integer',
+            'sale_price' => 'required|integer',
+            'brand' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+
         // ubah nama file
         $imageName = time() . '.' . $request->image->extension();
 

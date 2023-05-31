@@ -41,10 +41,20 @@
                         Cart
                         <span class="badge bg-light text-dark ms-1 rounded-pill">0</span>
                     </a>
-                    <a href="{{ route('login') }}" class="btn btn-outline-light ms-1">
-                        <i class="bi-person-fill me-1"></i>
-                        Login
-                    </a>
+
+                    @auth
+                        <a href="{{ route('dashboard') }}" class="btn btn-outline-light ms-1">
+                            <i class="bi-person-fill me-1"></i>
+                            Dashboard
+                        </a>
+                    @endauth
+
+                    @guest
+                        <a href="{{ route('login') }}" class="btn btn-outline-light ms-1">
+                            <i class="bi-person-fill me-1"></i>
+                            Login
+                        </a>
+                    @endguest
                 </form>
             </div>
         </div>

@@ -13,6 +13,11 @@ class CategoryController extends Controller
         $categories = Category::all();
 
         return view('category.index', compact('categories'));
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => 'List Data Category',
+        //     'data' => $categories
+        // ], 200);
     }
 
     public function create()
