@@ -30,7 +30,7 @@
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @foreach ($categories as $category)
-                                <li><a class="dropdown-item" href="#!">{{ $category->name }}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('landing', ['category' => $category->name]) }}">{{ $category->name }}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -90,6 +90,20 @@
     <!-- Section-->
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
+            <form action="{{ route('landing') }}" method="GET">
+                @csrf
+                <div class="row g-3 my-5">
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" placeholder="Min" name="min" value="{{ old('min') }}">
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" placeholder="Max" name="max" value={{ old('max') }}>
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="submit" class="btn btn-primary">Terapkan</button>
+                    </div>
+                </div>
+            </form>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
                 @forelse ($products as $product)
@@ -107,7 +121,8 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <a href="#" style="text-decoration: none" class="text-dark">
+                                    <a href="{{ route('product.show', ['id' => $product->id]) }}" style="text-decoration: none" class="text-dark">
+                                        <small class="text-strong">{{ $product->category->name }}</small>
                                         <h5 class="fw-bolder">{{ $product->name }}</h5>
                                     </a>
                                     <!-- Product reviews-->

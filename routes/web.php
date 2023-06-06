@@ -31,6 +31,7 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register.s
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
 
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
 Route::middleware('auth')->group(function() {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
