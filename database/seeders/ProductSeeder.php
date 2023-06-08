@@ -28,7 +28,7 @@ class ProductSeeder extends Seeder
                 'name' => $faker->sentence(3),
                 'price' => $faker->numberBetween(100000, 1000000),
                 'sale_price' => $faker->numberBetween(100000, 1000000),
-                'brands' => $faker->randomElement($category),
+                'brands' => $faker->randomElement($brand),
                 'rating' => $faker->numberBetween(1, 5),
                 'image' => '1686041426.jpg',
             ]);
