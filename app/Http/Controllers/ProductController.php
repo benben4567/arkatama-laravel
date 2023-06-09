@@ -23,6 +23,20 @@ class ProductController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $product = Product::where('id', $id)->with('category')->first();
+
+        $related = Product::where('category_id', $product->category->id)->inRandomOrder()->limit(4)->get();
+
+        if ($product) {
+            return view('product.show', compact('product', 'related'));
+        } else {
+            abort(404);
+        }
+
+    }
+
     public function create()
     {
         $brands = Brand::all();
