@@ -33,7 +33,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'role_id' => $request->role,
+            'role' => $request->role,
             'password' => bcrypt('password') // default password, sementara di hardcode
         ]);
 
