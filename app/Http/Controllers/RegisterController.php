@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,11 +16,14 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
+        
+        $role = Role::where('name', 'User')->first();
+        
         $store = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'role_id' => 3,
+            'role_id' => $role->id,
             'password' => Hash::make($request->password),
         ]);
 
