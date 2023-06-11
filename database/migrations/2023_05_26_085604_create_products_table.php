@@ -21,7 +21,6 @@ return new class extends Migration
             $table->bigInteger("sale_price")->default(0);
             $table->string("brands")->nullable();
             $table->integer("rating")->default(0);
-            $table->string("image")->nullable();
             $table->timestamps();
         });
     }
