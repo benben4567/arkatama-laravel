@@ -22,15 +22,19 @@ class ProductSeeder extends Seeder
         $category = Category::all()->pluck('id')->toArray();
         $brand = Brand::all()->pluck('name')->toArray();
 
+
         for ($i=0; $i < 50 ; $i++) {
+            $price = $faker->numberBetween(100000, 1000000);
+            $sale_price = $faker->numberBetween(0, $price);
+
             $product = Product::create([
                 'category_id' => $faker->randomElement($category),
                 'name' => $faker->sentence(3),
-                'price' => $faker->numberBetween(100000, 1000000),
-                'sale_price' => $faker->numberBetween(100000, 1000000),
+                'price' => $price,
+                'sale_price' => $sale_price,
                 'brands' => $faker->randomElement($brand),
                 'rating' => $faker->numberBetween(1, 5),
-                'image' => '1686041426.jpg',
+                'approve' => $faker->boolean(25),
             ]);
         }
     }

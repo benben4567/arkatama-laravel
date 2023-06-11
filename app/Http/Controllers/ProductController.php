@@ -76,7 +76,7 @@ class ProductController extends Controller
             'image' => $imageName,
         ]);
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('success', 'Product created successfully.');
     }
 
     public function edit($id)
@@ -130,7 +130,7 @@ class ProductController extends Controller
         }
 
         // redirect ke halaman product.index
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('success', 'Product updated successfully.');
     }
 
     public function destroy($id)
@@ -142,6 +142,34 @@ class ProductController extends Controller
         $product->delete();
 
         // redirect ke halaman product.index
-        return redirect()->route('product.index');
+        return redirect()->back()->with('success', 'Product deleted successfully.');
+    }
+    
+    public function approve($id)
+    {
+        // ambil data product berdasarkan id
+        $product = Product::find($id);
+
+        // update data product
+        $product->update([
+            'approve' => '1',
+        ]);
+
+        // redirect ke halaman product.index
+        return redirect()->back()->with('success', 'Product approved successfully.');
+    }
+
+    public function reject($id)
+    {
+        // ambil data product berdasarkan id
+        $product = Product::find($id);
+
+        // update data product
+        $product->update([
+            'approve' => '0',
+        ]);
+
+        // redirect ke halaman product.index
+        return redirect()->back()->with('success', 'Product rejected successfully.');
     }
 }

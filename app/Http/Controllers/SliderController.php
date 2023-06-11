@@ -105,4 +105,26 @@ class SliderController extends Controller
         // alihkan halaman ke halaman sliders
         return redirect()->route('slider.index');
     }
+    
+    public function approve($id)
+    {
+        // update data sliders
+        Slider::where('id', $id)->update([
+            'approve' => '1',
+        ]);
+
+        // alihkan halaman ke halaman sliders
+        return redirect()->back()->with('success', 'Slider berhasil diapprove');
+    }
+    
+    public function reject($id)
+    {
+        // update data sliders
+        Slider::where('id', $id)->update([
+            'approve' => '0',
+        ]);
+
+        // alihkan halaman ke halaman sliders
+        return redirect()->back()->with('success', 'Slider berhasil direject');
+    }
 }

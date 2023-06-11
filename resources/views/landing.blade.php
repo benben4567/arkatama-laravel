@@ -70,7 +70,12 @@
         <div class="carousel-inner">
             @foreach ($sliders as $slider)
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="3000">
-                    <img src="{{ asset('storage/slider/' . $slider->image) }}" class="d-block w-100" alt="{{ $slider->image }}">
+                    {{-- cek apakah slider memiliki image --}}
+                    @if ($slider->image)
+                        <img src="{{ asset('storage/slider/' . $slider->image) }}" class="d-block w-100" alt="{{ $slider->image }}">
+                    @else
+                        <img src="{{ asset('images/default-slider.png') }}" class="d-block w-100" alt="default-image">
+                    @endif
                     <div class="carousel-caption d-none d-md-block">
                         <h5>{{ $slider->title }}</h5>
                         <p>{{ $slider->caption }}</p>
@@ -115,7 +120,12 @@
                             @endif
 
                             <!-- Product image-->
-                            <img class="card-img-top" src="{{ asset('storage/product/' . $product->image) }}" alt="{{ $product->name }}" />
+                            {{-- Cek apakah product memiliki image --}}
+                            @if ($product->image)
+                                <img class="card-img-top" src="{{ asset('storage/product/' . $product->image) }}" alt="{{ $product->name }}" />
+                            @else
+                                <img class="card-img-top" src="{{ asset('images/default-product.png') }}" alt="default-image" />
+                            @endif
 
                             <!-- Product details-->
                             <div class="card-body p-4">

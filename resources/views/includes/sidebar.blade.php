@@ -9,7 +9,7 @@
                 </a>
             @endif
 
-            @if (Auth::user()->role->name == 'Admin')
+            @if (Auth::user()->role->name == 'Admin' || Auth::user()->role->name == 'Staff')
                 <div class="sb-sidenav-menu-heading">Content</div>
                 <a class="nav-link" href="{{ route('slider.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
