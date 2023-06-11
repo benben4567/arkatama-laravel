@@ -13,20 +13,34 @@ Pastikan sudah menginstal :
 ## Mulai
 
  1. Clone project ini (pastikan sudah berada di folder C:\laragon\www)
-`git clone https://github.com/benben4567/arkatama-laravel.git`
+	```sh
+	git clone https://github.com/benben4567/arkatama-laravel.git
+	```
  2. Buat file .env dari .env.example (cukup Copy Paste)
-`cp .env.example .env`
- 4. Atur nama database, username dan password nya di file .env
+	```sh
+	cp .env.example .env
+	```
+ 4. Buka file .env kemudian atur nama database, username dan password nya
  5. Install dependecy laravel melalui console 
-   ` composer install`
+	```sh 
+	composer install
+	```
  6. Generate Key Laravel melalui console
-`php artisan key:generate`
+	```sh
+	php artisan key:generate
+	```
  7. Buat SymLink Storage melalui console
-`php artisan storage:link`
+	```sh
+	php artisan storage:link
+	```
  8. Jalankan migration yang ada Perhatian: Data pada database yang digunakan akan terhapus, lebih baik gunakan database baru
- `php artisan migrate:fresh`
+	```sh
+	php artisan migrate:fresh
+	```
  9. Jalankan Seeder untuk mengisi data awal
- `php artisan db:seed`
+	```sh
+	php artisan db:seed
+	```
  10. Restart laragon dan buka web melalui browser
  11. Selesai
 
